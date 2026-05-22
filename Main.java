@@ -45,9 +45,12 @@ public class Main {
                     hapusAntrian();
                     break;
                 case 4:
-                    inputPesanan();
+                    cariPembaliPosisi();   /*kode baru untuk fitur cari pembeli berdasarkan posisi dalam antrian*/
                     break;
                 case 5:
+                    inputPesanan();
+                    break;
+                case 6:
                     laporanPesanan();
                     break;
                 case 0:
@@ -71,7 +74,9 @@ public class Main {
         System.out.println("1. Tambah Antrian");
         System.out.println("2. Cetak Antrian");
         System.out.println("3. Hapus Antrian dan Pesan Makanan");
-        System.out.println("4. Laporan Pesanan");
+        System.out.println("4. Cari Pembeli Berdasarkan Posisi"); /*kode baru untuk fitur cari pembeli berdasarkan posisi dalam antrian*/
+        System.out.println("5. Input Pesanan ke Laporan");
+        System.out.println("6. Laporan Pesanan");
         System.out.println("0. Keluar");
         System.out.println("================================================");
     }
@@ -126,6 +131,24 @@ public class Main {
      */
     private static void cetakAntrian() {
         antrian.cetakAntrian();
+    }
+    
+    /**
+     * Cari pembeli berdasarkan posisi dalam antrian (fitur baru)
+     * Pengguna input nomor posisi dan sistem menampilkan data pembeli tersebut
+     */
+    /**
+     * Mencari dan menampilkan data pembeli berdasarkan posisi antrian.
+     * Meminta input posisi antrian dari pengguna, kemudian menampilkan
+     * informasi pembeli yang berada pada posisi tersebut dalam antrian.
+     */
+    private static void cariPembaliPosisi() {
+        System.out.println("\n---------- CARI PEMBELI BERDASARKAN POSISI ----------");
+        System.out.print("Masukkan posisi antrian (ke-): ");
+        int posisi = scanner.nextInt();
+        scanner.nextLine();
+        
+        antrian.tampilkanPembaliPosisi(posisi);
     }
     
     /**

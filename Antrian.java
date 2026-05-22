@@ -1,6 +1,5 @@
 /**
  * Class Antrian - Manajemen sistem antrian di Sistem Manajemen Antrian (CM) menggunakan Double Linked List
- * 
  * Kelas inti yang mengelola queue pelanggan. Fitur utama:
  * - Tambah antrian baru dengan auto-increment nomor
  * - Cetak seluruh daftar antrian
@@ -61,6 +60,75 @@ public class Antrian {
             System.out.println("  Harga: " + current.getPesanan().getHarga());
             System.out.println("-----------------------------------");
             current = current.getNext();
+        }
+    }
+    
+    /**
+     * Tambahkan fitur untuk menampilkan pembeli yang berada
+    pada posisi antrean tertentu, pengguna menginput nomor
+    posisi (misal: posisi ke-2), sistem menampilkan data pembeli
+    tersebut.
+     * Cari pembeli berdasarkan posisi dalam antrian (1 = posisi pertama, 2 = posisi kedua, dst)
+     * Fitur baru untuk menampilkan pembeli di posisi tertentu
+     */
+    public node cariPembaliPosisi(int posisi) {
+        if (posisi < 1) {
+            return null;
+        }
+        
+        node current = head;
+        int hitungPosisi = 1;
+        
+        while (current != null) {
+            if (hitungPosisi == posisi) {
+                return current;
+            }
+            hitungPosisi++;
+            current = current.getNext();
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Tampilkan detail pembeli dan pesanannya berdasarkan posisi
+     */
+    /**
+     * Menampilkan data pembeli pada posisi tertentu dalam antrian.
+     * 
+     * @param posisi posisi pembeli dalam antrian yang ingin ditampilkan (1-indexed)
+     * 
+     * Deskripsi:
+     * - Memeriksa apakah antrian kosong
+     * - Mencari node pembeli berdasarkan posisi yang diberikan
+     * - Jika ditemukan, menampilkan informasi lengkap pembeli termasuk:
+     *   * Nomor antrian
+     *   * Nama pembeli
+     *   * Nomor HP
+     *   * Menu pesanan
+     *   * Harga pesanan
+     * - Jika posisi tidak ditemukan, menampilkan pesan error
+     * 
+     * @throws tidak ada exception yang di-throw, hanya menampilkan pesan ke console
+     */
+    public void tampilkanPembaliPosisi(int posisi) {
+        if (head == null) {
+            System.out.println("Antrian kosong!");
+            return;
+        }
+        
+        node pembaliPosisi = cariPembaliPosisi(posisi);
+        
+        if (pembaliPosisi != null) {
+            System.out.println("\n========== DATA PEMBELI POSISI KE-" + posisi + " ==========");
+            System.out.println("Nomor Antrian: " + pembaliPosisi.getNomorAntrian());
+            System.out.println("Nama Pembeli: " + pembaliPosisi.getPembeli().getNamaPembeli());
+            System.out.println("No HP: " + pembaliPosisi.getPembeli().getNoHp());
+            System.out.println("Menu: " + pembaliPosisi.getPesanan().getNamaPesanan());
+            System.out.println("Harga: Rp " + pembaliPosisi.getPesanan().getHarga());
+            System.out.println("==========================================");
+        } else {
+            System.out.println("Posisi ke-" + posisi + " tidak ditemukan dalam antrian!");
         }
     }
     
